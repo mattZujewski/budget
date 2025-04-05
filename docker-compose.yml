@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  budget:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    command: ai-config --status
+    environment:
+      - PYTHONUNBUFFERED=1

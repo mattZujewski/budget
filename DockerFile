@@ -1,0 +1,45 @@
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV IN_DOCKER=true
+
+# Set work directory
+WORKDIR /app/budget
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Create necessary directories
+RUN mkdir -p /app/data /app/logs
+
+# Copy the entire project
+COPY . .
+
+# Set permissions
+RUN chmod +x debug.py
+
+# Expose any necessary ports (e.g., if you have a web interface)
+# EXPOSE 8000
+
+# Create a non-root user and switch to it
+RUN addgroup --system budget && adduser --system --group budget
+RUN chown -R budget:budget /app
+USER budget
+
+# Health check script
+COPY debug.py /app/budget/debug.py
+
+# Default command to run diagnostics and then start the app
+CMD ["python", "debug.py"]
