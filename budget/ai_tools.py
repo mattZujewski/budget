@@ -6,7 +6,7 @@ import requests
 import time
 from typing import Dict, List, Any, Optional, Union
 
-from .config import AI_API
+from configs.config import AI_API
 from .logger import logger
 
 class AITools:

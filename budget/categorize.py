@@ -9,7 +9,7 @@ from pathlib import Path
 import joblib
 from datetime import datetime
 
-from .config import DEFAULT_CATEGORIES, AI_MODEL, AI_API
+from configs.config import DEFAULT_CATEGORIES, AI_MODEL, AI_API
 from .logger import logger
 from .ai_tools import AITools
 

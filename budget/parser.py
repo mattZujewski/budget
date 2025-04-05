@@ -9,7 +9,7 @@ from datetime import datetime
 import csv
 from pathlib import Path
 
-from .config import BANK_IMPORT
+from configs.config import BANK_IMPORT
 from .logger import logger
 
 class TransactionParser:

@@ -15,7 +15,8 @@ from budget.categorize import Categorizer
 from budget.visualizer import BudgetVisualizer
 from budget.ai_tools import AITools
 from budget.logger import logger
-from budget.config import AI_API, DATA_DIR
+from configs.config import *
+
 
 def main():
     """Main function to run the budget application from the command line."""
